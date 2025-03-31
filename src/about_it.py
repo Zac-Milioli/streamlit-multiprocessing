@@ -1,9 +1,10 @@
-## The Problem with Multiprocessing in Streamlit
+about_it_text = """
+## :red[The Problem] with Multiprocessing in Streamlit
 If you're using Streamlit (>=1.44.0) alongside more complex processing, you might have encountered an issue: it cannot render UI elements during thread/process events and it does not share session variables across these threads/processes, even if they remain static throughout execution.
 
 This limitation can be a major hurdle for those looking to build more scalable web applications—whether for scientific purposes or simply to develop a robust MVP for their company.
 
-## The story behind it
+## :orange[The story behind it]
 After working with Streamlit for nearly two years, I found myself pushing for more optimized applications for the MVPs and solutions I was developing for clients. However, the best optimization approach—multiprocessing—turned out to be the barrier.
 
 When I first implemented threads for handling API calls and post-processing tasks, I noticed that none of the toast notifications or progress bars were rendering. Additionally, the console was flooded with "MissingMainThread" logs. Through experimentation, I discovered that while the threads were indeed executing as expected, no UI elements were rendered and some functions failed due to the inability to use the session_state variable during thread events.
@@ -12,7 +13,7 @@ The solution began to take shape: once I removed all Streamlit components and an
 
 The remaining challenge was determining when it would be safe to reintroduce Streamlit components. I needed to be able to display progress to the user during thread execution. The answer was straightforward: use them only during thread/process creation or when gathering the results.
 
-## The Solution
+## :green[The Solution]
 For multiprocessing to work effectively with Streamlit, keep one critical point in mind:
 
 ### Streamlit does not handle developer-implemented multiprocessing well, so avoid integrating it directly.
@@ -27,3 +28,4 @@ Additionally, note that:
 If you follow these recommendations, your multiprocessing implementation will work seamlessly with Streamlit.
 
 For session_state variables that remain unchanged during execution, simply convert them into standard Python variables and pass them as function arguments within threads/processes. Progress bars, notifications, and other components should only be rendered outside the multiprocessing context.
+"""
