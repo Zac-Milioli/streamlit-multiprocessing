@@ -35,7 +35,7 @@ if st.button("Play simulation :material/play_circle:", use_container_width=True)
         for _ in range(0,instances):
             random_number = randrange(1, max_seconds)
             threads.append(executor.submit(random_time_process, random_number))
-            st.toast(f"Thread of {random_number} seconds started", icon=":material/play_arrow:")
+            st.toast(f"Thread of {random_number} seconds queued", icon=":material/play_arrow:")
         for future in concurrent.futures.as_completed(threads):
             result = future.result()
             if result:
