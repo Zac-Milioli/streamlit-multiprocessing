@@ -4,7 +4,7 @@ If you're using Streamlit (>=1.44.0) alongside more complex processing, you migh
 This limitation can be a major hurdle for those looking to build more scalable web applications—whether for scientific purposes or simply to develop a robust MVP for their company.
 
 ## The story behind it
-After working with Streamlit for nearly two years, I found myself pushing for more optimized applications for the MVPs and solutions I was developing for clients. However, the best optimization approach—multiprocessing—turned out to be the barrier.
+After working with Streamlit for nearly two years, I found myself pushing for more optimized applications for the MVPs and solutions I was developing for some teams from the group I work for. However, the best optimization approach—multiprocessing—turned out to be the barrier.
 
 When I first implemented threads for handling API calls and post-processing tasks, I noticed that none of the toast notifications or progress bars were rendering. Additionally, the console was flooded with "MissingMainThread" logs. Through experimentation, I discovered that while the threads were indeed executing as expected, no UI elements were rendered and some functions failed due to the inability to use the session_state variable during thread events.
 
