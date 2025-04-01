@@ -9,7 +9,7 @@ After working with Streamlit for nearly two years, I found myself pushing for mo
 
 When I first implemented threads for handling API calls and post-processing tasks, I noticed that none of the toast notifications or progress bars were rendering. Additionally, the console was flooded with "MissingMainThread" logs. Through experimentation, I discovered that while the threads were indeed executing as expected, no UI elements were rendered and some functions failed due to the inability to use the session_state variable during thread events.
 
-The solution began to take shape once I removed all Streamlit components and any usage of session_state from the functions executed by the threads, the excessive logs disappeared. Moreover, everything returned to normal once the threads completed their life cycle.
+The solution began to take shape once I removed all Streamlit components and any usage of session_state from the functions executed by the threads and the excessive logs disappeared. Moreover, everything returned to normal once the threads completed their life cycle.
 
 The remaining challenge was determining when it would be safe to reintroduce Streamlit components. I needed to be able to display progress to the user during thread execution. The answer was straightforward: use them only during thread/process creation or when gathering the results.
 
